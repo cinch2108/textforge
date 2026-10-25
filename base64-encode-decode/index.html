@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base64 Encode &amp; Decode: Text, Files &amp; URL-Safe Base64 | Textforge</title>
+<meta name="description" content="Encode and decode Base64 with full UTF-8 and emoji support, URL-safe Base64, and file to Base64 or data URI conversion up to 10 MB. Free and nothing is uploaded.">
+<meta name="theme-color" content="#0b0b10">
+<link rel="canonical" href="https://cinch2108.github.io/textforge/base64-encode-decode/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c5cff'/%3E%3Cstop offset='1' stop-color='%23ff5c9d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3Cpath d='M9 10h14M16 10v13' stroke='%23fff' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Textforge">
+<meta property="og:title" content="Base64 Encode &amp; Decode: Text, Files &amp; URL-Safe Base64 | Textforge">
+<meta property="og:description" content="Encode and decode Base64 with full UTF-8 and emoji support, URL-safe Base64, and file to Base64 or data URI conversion up to 10 MB. Free and nothing is uploaded.">
+<meta property="og:url" content="https://cinch2108.github.io/textforge/base64-encode-decode/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Base64 Encode &amp; Decode: Text, Files &amp; URL-Safe Base64 | Textforge">
+<meta name="twitter:description" content="Encode and decode Base64 with full UTF-8 and emoji support, URL-safe Base64, and file to Base64 or data URI conversion up to 10 MB. Free and nothing is uploaded.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textforge","applicationCategory":"DeveloperApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free word counter, case converter, JSON formatter and validator, Base64 and URL encoder, text diff checker, lorem ipsum generator and regex tester that run entirely in your browser."}</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Base64 encryption?", "acceptedAnswer": {"@type": "Answer", "text": "No. Base64 is an encoding that turns bytes into plain text so they can travel through email, JSON or URLs. Anyone can decode it, so never use it to protect passwords or secrets."}}, {"@type": "Question", "name": "Why does my emoji or accented text decode wrong on other sites?", "acceptedAnswer": {"@type": "Answer", "text": "Many tools use the browser’s btoa function directly, which only handles Latin-1. Textforge converts text to UTF-8 bytes first, so emoji, accents and every language round-trip correctly."}}, {"@type": "Question", "name": "What is URL-safe Base64?", "acceptedAnswer": {"@type": "Answer", "text": "It is a variant that replaces + with - and / with _ and usually removes the trailing = padding, so the result can be used in URLs, file names and JSON Web Tokens without escaping."}}, {"@type": "Question", "name": "Are my files uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. Files are read with your browser’s FileReader and encoded locally. Files up to 10 MB are supported; Base64 makes data about 33% larger."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Textforge", "item": "https://cinch2108.github.io/textforge/"}, {"@type": "ListItem", "position": 2, "name": "Base64 Encoder", "item": "https://cinch2108.github.io/textforge/base64-encode-decode/"}]}</script>
+</head>
+<body data-view="encode" data-page="b64" data-mode="b64">
+<a class="skip" href="#main">Skip to tool</a>
+<header><div class="nav">
+  <a class="logo" href="../" aria-label="Textforge home" style="color:inherit;text-decoration:none"><i></i>Textforge</a>
+  <nav class="tabs" id="tabs" aria-label="Tools"><a class="tab" data-p="count" data-v="count" data-name="Word Counter" href="../" title="Word Counter (Alt+1)">Counter</a><a class="tab" data-p="case" data-v="case" data-name="Case Converter" href="../case-converter/" title="Case Converter (Alt+2)">Case</a><a class="tab" data-p="json" data-v="json" data-name="JSON Formatter" href="../json-formatter/" title="JSON Formatter (Alt+3)">JSON</a><a class="tab active" data-p="b64" data-v="encode" data-name="Base64 Encoder" href="../base64-encode-decode/" aria-current="page" title="Base64 Encoder (Alt+4)">Base64</a><a class="tab" data-p="url" data-v="encode" data-name="URL Encoder" href="../url-encode-decode/" title="URL Encoder (Alt+5)">URL</a><a class="tab" data-p="diff" data-v="diff" data-name="Text Diff Checker" href="../text-diff/" title="Text Diff Checker (Alt+6)">Diff</a><a class="tab" data-p="lorem" data-v="lorem" data-name="Lorem Ipsum Generator" href="../lorem-ipsum-generator/" title="Lorem Ipsum Generator (Alt+7)">Lorem</a><a class="tab" data-p="regex" data-v="regex" data-name="Regex Tester" href="../regex-tester/" title="Regex Tester (Alt+8)">Regex</a></nav>
+</div></header>
+
+<main id="main">
+<section class="hero">
+  <h1>Base64 encode and decode, <span>emoji and files included.</span></h1>
+  <p>Convert text to and from Base64 with proper UTF-8 support, switch to URL-safe Base64 for tokens, or turn any file into Base64 or a data URI. Everything happens on your device.</p>
+  <div id="resume" class="resume" hidden></div>
+</section>
+<!-- AD SLOT: top leaderboard 970x90 (responsive). Paste ad unit inside. -->
+<div class="ad ad-leader" id="ad-top" data-ad-slot="top" aria-label="Advertisement"></div>
+<div class="layout"><div class="content">
+
+<!-- WORD COUNTER -->
+<section class="view" id="v-count" aria-label="Word and character counter">
+  <div class="split">
+    <div class="card">
+      <div class="row between"><label class="lbl" for="cnt-in" style="margin:0">Your text</label>
+        <div class="row tight"><button class="btn sm" data-act="paste" data-target="cnt-in">Paste</button><button class="btn sm" data-act="copy-el" data-target="cnt-in">Copy</button><button class="btn sm" data-act="clear" data-target="cnt-in">Clear</button></div></div>
+      <textarea id="cnt-in" class="ta tall" maxlength="2000000" spellcheck="true" placeholder="Start typing or paste your text here. Everything is counted live, right in your browser."></textarea>
+    </div>
+    <div class="stats" id="cnt-stats">
+      <div class="stat hero-stat"><b data-k="words">0</b><span>Words</span></div>
+      <div class="stat hero-stat"><b data-k="chars">0</b><span>Characters</span></div>
+      <div class="stat"><b data-k="nospace">0</b><span>Without spaces</span></div>
+      <div class="stat"><b data-k="sentences">0</b><span>Sentences</span></div>
+      <div class="stat"><b data-k="paras">0</b><span>Paragraphs</span></div>
+      <div class="stat"><b data-k="lines">0</b><span>Lines</span></div>
+      <div class="stat"><b data-k="read">0s</b><span>Reading time</span></div>
+      <div class="stat"><b data-k="speak">0s</b><span>Speaking time</span></div>
+      <div class="stat"><b data-k="unique">0</b><span>Unique words</span></div>
+      <div class="stat"><b data-k="avg">0</b><span>Avg word length</span></div>
+      <div class="stat wide"><b data-k="flesch">–</b><span data-k="fleschlbl">Readability (Flesch)</span></div>
+    </div>
+  </div>
+  <div class="grid2 mt">
+    <div class="card"><h2>Length limits</h2><div class="limits" id="cnt-limits"></div></div>
+    <div class="card">
+      <div class="row between"><h2 style="margin:0">Top keywords</h2>
+        <div class="row tight"><select id="kw-n" aria-label="Phrase length"><option value="1">1 word</option><option value="2">2 words</option><option value="3">3 words</option></select>
+        <label class="check"><input type="checkbox" id="kw-stop" checked> Skip common words</label></div></div>
+      <div class="kw mt2" id="cnt-kw"><p class="hint">Keywords and their density appear here.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE CONVERTER -->
+<section class="view" id="v-case" aria-label="Case converter">
+  <div class="card">
+    <label class="lbl">Change case</label>
+    <div class="chipbar" id="case-btns">
+      <button class="btn" data-case="upper">UPPERCASE</button><button class="btn" data-case="lower">lowercase</button>
+      <button class="btn" data-case="title">Title Case</button><button class="btn" data-case="sentence">Sentence case</button>
+      <button class="btn" data-case="camel">camelCase</button><button class="btn" data-case="pascal">PascalCase</button>
+      <button class="btn" data-case="snake">snake_case</button><button class="btn" data-case="kebab">kebab-case</button>
+      <button class="btn" data-case="constant">CONSTANT_CASE</button><button class="btn" data-case="dot">dot.case</button>
+      <button class="btn" data-case="alternating">aLtErNaTiNg</button><button class="btn" data-case="inverse">iNVERSE</button>
+    </div>
+    <label class="lbl mt2">Clean up</label>
+    <div class="chipbar">
+      <button class="btn" data-case="trim">Trim &amp; remove extra spaces</button><button class="btn" data-case="nobreaks">Remove line breaks</button>
+      <button class="btn" data-case="noempty">Remove empty lines</button><button class="btn" data-case="sortaz">Sort lines A→Z</button>
+      <button class="btn" data-case="sortza">Sort lines Z→A</button><button class="btn" data-case="dedupe">Remove duplicate lines</button>
+      <button class="btn" data-case="revlines">Reverse line order</button><button class="btn" data-case="revtext">Reverse text</button>
+      <button class="btn" data-case="number">Number lines</button>
+    </div>
+    <textarea id="case-in" class="ta mt" maxlength="2000000" spellcheck="false" placeholder="Paste text, then click a button above. Each line is converted separately, so lists work too."></textarea>
+    <div class="row between mt2">
+      <span class="hint" id="case-info">0 characters · 0 lines</span>
+      <div class="row tight"><button class="btn sm" data-act="case-undo">↶ Undo</button><button class="btn sm" data-act="copy-el" data-target="case-in">Copy</button><button class="btn sm" data-act="download-el" data-target="case-in" data-name="text.txt">⬇ Download</button><button class="btn sm" data-act="clear" data-target="case-in">Clear</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- JSON -->
+<section class="view" id="v-json" aria-label="JSON formatter and validator">
+  <div class="row toolbar">
+    <button class="btn primary" data-act="json-format">Format <kbd class="dk">Ctrl ↵</kbd></button>
+    <button class="btn" data-act="json-minify">Minify</button>
+    <button class="btn" data-act="json-repair" title="Fix trailing commas, comments, single quotes, unquoted keys">✨ Repair</button>
+    <select id="json-indent" aria-label="Indent"><option value="2">2 spaces</option><option value="4">4 spaces</option><option value="tab">Tabs</option></select>
+    <label class="check"><input type="checkbox" id="json-sort"> Sort keys</label>
+    <div class="seg" id="json-view" role="group" aria-label="Output view"><button class="on" data-jv="code">Code</button><button data-jv="tree">Tree</button></div>
+    <div class="row tight push"><button class="btn sm" data-act="json-sample">Sample</button><button class="btn sm" data-act="clear" data-target="json-in">Clear</button></div>
+  </div>
+  <div class="grid2 mt2">
+    <div class="card pad0">
+      <div class="cardhead"><span class="lbl" style="margin:0">Input</span><span class="pill" id="json-status">Waiting for JSON</span></div>
+      <textarea id="json-in" class="ta code-ta tall flat" maxlength="5000000" spellcheck="false" placeholder='Paste JSON here, e.g. {"name":"Textforge","free":true}'></textarea>
+      <div class="errbox" id="json-err" hidden></div>
+    </div>
+    <div class="card pad0">
+      <div class="cardhead"><span class="lbl" style="margin:0">Output</span><div class="row tight"><button class="btn sm" data-act="json-copy">Copy</button><button class="btn sm" data-act="json-download">⬇ Download</button></div></div>
+      <pre class="code out tall" id="json-out" tabindex="0"></pre>
+      <div class="tree tall" id="json-tree" hidden tabindex="0"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ENCODE -->
+<section class="view active" id="v-encode" aria-label="Base64, URL and HTML entity encoder and decoder">
+  <div class="row toolbar">
+    <div class="seg" id="enc-mode" role="group" aria-label="Format"><button class="on" data-mode="b64">Base64</button><button data-mode="url">URL</button><button data-mode="html">HTML entities</button></div>
+    <div class="seg" id="enc-dir" role="group" aria-label="Direction"><button class="on" data-dir="enc">Encode</button><button data-dir="dec">Decode</button></div>
+    <span class="opts" data-for="b64"><label class="check"><input type="checkbox" id="b64-url"> URL-safe (-_ no padding)</label></span>
+    <span class="opts" data-for="url" hidden><select id="url-kind" aria-label="URL encoding type"><option value="component">Component (query values)</option><option value="full">Full URL (keep :/?#&amp;)</option></select><label class="check"><input type="checkbox" id="url-plus"> + means space</label></span>
+    <span class="opts" data-for="html" hidden><label class="check"><input type="checkbox" id="html-all"> Also encode non-ASCII</label></span>
+  </div>
+  <div class="grid2 mt2">
+    <div class="card pad0"><div class="cardhead"><span class="lbl" style="margin:0" id="enc-inlbl">Text to encode</span><button class="btn sm" data-act="clear" data-target="enc-in">Clear</button></div>
+      <textarea id="enc-in" class="ta code-ta flat" maxlength="5000000" spellcheck="false" placeholder="Type or paste here. Results update as you type."></textarea></div>
+    <div class="card pad0"><div class="cardhead"><span class="lbl" style="margin:0">Result <span class="pill sm" id="enc-status"></span></span>
+      <div class="row tight"><button class="btn sm" data-act="enc-swap" title="Use result as input and flip direction">⇄ Swap</button><button class="btn sm" data-act="copy-el" data-target="enc-out">Copy</button><button class="btn sm" data-act="download-el" data-target="enc-out" data-name="result.txt">⬇</button></div></div>
+      <textarea id="enc-out" class="ta code-ta flat" readonly spellcheck="false"></textarea></div>
+  </div>
+  <div class="card mt" data-for="b64" id="b64-file">
+    <h2>File to Base64</h2>
+    <div class="drop" id="drop" tabindex="0" role="button" aria-label="Choose a file to encode"><div class="dropic">📄</div><b>Drop a file, or click to choose</b><p class="hint">Up to 10 MB. The file is read on your device and never uploaded.</p><input type="file" id="file" hidden></div>
+    <div class="row mt2"><label class="check"><input type="checkbox" id="b64-datauri" checked> Include data: URI prefix</label><button class="btn sm" data-act="b64-tofile">⬇ Decode Base64 input to a file</button></div>
+    <div id="file-out" class="fileout" hidden><img id="file-prev" alt="Preview of the chosen image" hidden><div><div id="file-meta" class="hint"></div><div class="row tight mt2"><button class="btn sm" data-act="file-copy">Copy Base64</button><button class="btn sm" data-act="file-css" id="file-css-btn" hidden>Copy as CSS background</button><button class="btn sm" data-act="file-img" id="file-img-btn" hidden>Copy as &lt;img&gt; tag</button></div></div></div>
+  </div>
+  <div class="card mt" data-for="url" id="url-parts" hidden>
+    <h2>URL breakdown</h2><p class="hint" id="url-hint">Paste a full URL (https://…) in the input to see its parts and decoded query parameters.</p>
+    <div id="url-table"></div>
+  </div>
+</section>
+
+<!-- DIFF -->
+<section class="view" id="v-diff" aria-label="Text diff checker">
+  <div class="grid2">
+    <div class="card pad0"><div class="cardhead"><label class="lbl" for="diff-a" style="margin:0">Original</label><button class="btn sm" data-act="clear" data-target="diff-a">Clear</button></div><textarea id="diff-a" class="ta code-ta flat" maxlength="1000000" spellcheck="false" placeholder="Paste the original text"></textarea></div>
+    <div class="card pad0"><div class="cardhead"><label class="lbl" for="diff-b" style="margin:0">Changed</label><button class="btn sm" data-act="clear" data-target="diff-b">Clear</button></div><textarea id="diff-b" class="ta code-ta flat" maxlength="1000000" spellcheck="false" placeholder="Paste the changed text"></textarea></div>
+  </div>
+  <div class="row toolbar mt2">
+    <div class="seg" id="diff-view" role="group" aria-label="Layout"><button class="on" data-dv="side">Side by side</button><button data-dv="inline">Inline</button></div>
+    <div class="seg" id="diff-level" role="group" aria-label="Detail"><button class="on" data-dl="line">Lines</button><button data-dl="word">Words</button></div>
+    <label class="check"><input type="checkbox" id="diff-ws"> Ignore whitespace</label>
+    <label class="check"><input type="checkbox" id="diff-case"> Ignore case</label>
+    <label class="check"><input type="checkbox" id="diff-collapse" checked> Hide unchanged</label>
+    <div class="row tight push"><button class="btn sm" data-act="diff-swap">⇄ Swap</button><button class="btn sm" data-act="diff-sample">Sample</button></div>
+  </div>
+  <div class="row mt2" id="diff-stats"></div>
+  <div class="diffout mt2" id="diff-out"><p class="hint pad">Paste two versions of your text to see what changed.</p></div>
+</section>
+
+<!-- LOREM -->
+<section class="view" id="v-lorem" aria-label="Lorem ipsum generator">
+  <div class="card">
+    <div class="row">
+      <div><label class="lbl" for="lo-n">How many</label><input type="number" id="lo-n" min="1" max="100" value="3" style="width:90px"></div>
+      <div><label class="lbl" for="lo-unit">Of</label><select id="lo-unit"><option value="p">Paragraphs</option><option value="s">Sentences</option><option value="w">Words</option><option value="l">List items</option></select></div>
+      <div><label class="lbl" for="lo-flavor">Flavor</label><select id="lo-flavor"><option value="latin">Classic Latin</option><option value="tech">Tech &amp; startup</option><option value="office">Corporate speak</option><option value="space">Space</option><option value="coffee">Coffee shop</option></select></div>
+      <div class="col-checks"><label class="check"><input type="checkbox" id="lo-classic" checked> Start with "Lorem ipsum…"</label><label class="check"><input type="checkbox" id="lo-html"> HTML tags</label></div>
+      <div class="row tight push"><button class="btn primary" data-act="lo-gen">Generate</button><button class="btn" data-act="copy-el" data-target="lo-out">Copy</button></div>
+    </div>
+    <textarea id="lo-out" class="ta mt" readonly aria-label="Generated text"></textarea>
+    <p class="hint mt2" id="lo-info"></p>
+  </div>
+</section>
+
+<!-- REGEX -->
+<section class="view" id="v-regex" aria-label="Regex tester">
+  <div class="card">
+    <div class="row between"><label class="lbl" for="re-pat" style="margin:0">Regular expression</label>
+      <select id="re-preset" aria-label="Common patterns"><option value="">Common patterns…</option></select></div>
+    <div class="rebar mt2"><span>/</span><input type="text" id="re-pat" maxlength="2000" spellcheck="false" autocomplete="off" placeholder="[A-Z]\w+"><span>/</span>
+      <div class="flags" id="re-flags" role="group" aria-label="Flags">
+        <button class="on" data-flag="g" title="global: find all matches">g</button><button data-flag="i" title="ignore case">i</button><button class="on" data-flag="m" title="multiline: ^ and $ match at line breaks">m</button><button data-flag="s" title="dotAll: . matches newlines">s</button><button data-flag="u" title="unicode">u</button><button data-flag="y" title="sticky">y</button>
+      </div></div>
+    <div class="row between mt2"><span class="pill" id="re-status">Enter a pattern</span><span class="hint">Runs in a background worker, so runaway patterns are stopped after 1.5 s.</span></div>
+    <label class="lbl mt" for="re-text">Test text</label>
+    <div class="hl-wrap"><div class="hl-back" id="re-back" aria-hidden="true"></div><textarea id="re-text" class="hl-ta" maxlength="500000" spellcheck="false" placeholder="Paste text to test against"></textarea></div>
+  </div>
+  <div class="grid2 mt">
+    <div class="card"><div class="row between"><h2 style="margin:0">Matches</h2><button class="btn sm" data-act="re-copy-matches">Copy all</button></div><div class="matches mt2" id="re-matches"><p class="hint">Matches and capture groups show up here.</p></div></div>
+    <div class="card"><h2>Replace</h2><input type="text" id="re-rep" maxlength="2000" spellcheck="false" placeholder="Replacement, e.g. $1 or $&lt;name&gt;" style="width:100%">
+      <pre class="code out mt2 short" id="re-out"></pre><button class="btn sm mt2" data-act="copy-el" data-target="re-out">Copy result</button></div>
+  </div>
+  <div class="card mt"><h2>Cheat sheet</h2><p class="hint" style="margin:-8px 0 12px">Click any token to insert it into your pattern.</p><div class="cheat" id="cheat"></div></div>
+</section>
+</div>
+<aside class="rail"><!-- AD SLOTS: sticky sidebar 300x250 x2 -->
+<div class="ad ad-rect" id="ad-side-1" data-ad-slot="side-1" aria-label="Advertisement"></div><div class="ad ad-rect" id="ad-side-2" data-ad-slot="side-2" aria-label="Advertisement"></div></aside>
+</div>
+<article class="seo">
+<h2>How to use the Base64 encoder</h2>
+<ol><li>Choose <b>Encode</b> or <b>Decode</b>, then type or paste into the left box. The result updates instantly.</li><li>Tick <b>URL-safe</b> to use - and _ instead of + and / and drop the = padding, which is what JWTs and many APIs expect. Decoding accepts both forms automatically.</li><li>To encode a file, drop it on the File to Base64 area. You can copy it as plain Base64, a data URI, a CSS background or an &lt;img&gt; tag.</li><li>If decoded Base64 is an image, PDF or other binary file, click <b>Decode Base64 input to a file</b> to download it.</li><li>Use ⇄ Swap to send the result back to the input and flip direction, which makes round-trip checks easy.</li></ol>
+<h2>Frequently asked questions</h2>
+<details><summary>Is Base64 encryption?</summary><p>No. Base64 is an encoding that turns bytes into plain text so they can travel through email, JSON or URLs. Anyone can decode it, so never use it to protect passwords or secrets.</p></details><details><summary>Why does my emoji or accented text decode wrong on other sites?</summary><p>Many tools use the browser’s btoa function directly, which only handles Latin-1. Textforge converts text to UTF-8 bytes first, so emoji, accents and every language round-trip correctly.</p></details><details><summary>What is URL-safe Base64?</summary><p>It is a variant that replaces + with - and / with _ and usually removes the trailing = padding, so the result can be used in URLs, file names and JSON Web Tokens without escaping.</p></details><details><summary>Are my files uploaded?</summary><p>No. Files are read with your browser’s FileReader and encoded locally. Files up to 10 MB are supported; Base64 makes data about 33% larger.</p></details>
+<h2>More free text and developer tools</h2>
+<div class="toollinks"><a href="../">Word Counter<span>Count words, characters, sentences, paragraphs and lines as you type.</span></a><a href="../case-converter/">Case Converter<span>Convert text to Title Case, Sentence case, UPPERCASE, lowercase, camelCase, PascalCase, snake_case, kebab-case and more.</span></a><a href="../json-formatter/">JSON Formatter<span>Format, validate and minify JSON with exact error line and column, syntax highlighting, sort keys, a collapsible tree view and one-click repair.</span></a><a href="../url-encode-decode/">URL Encoder<span>Percent-encode or decode URLs and query strings, choose component or full-URL encoding, treat + as space, and see every query parameter decoded.</span></a><a href="../text-diff/">Text Diff Checker<span>Compare two texts or code files and see every change highlighted side by side or inline, line by line or word by word.</span></a><a href="../lorem-ipsum-generator/">Lorem Ipsum Generator<span>Generate lorem ipsum placeholder text by paragraphs, sentences, words or list items, in classic Latin or fun tech, corporate, space and coffee flavors, with optional HTML tags.</span></a><a href="../regex-tester/">Regex Tester<span>Test JavaScript regex with live match highlighting, capture and named groups, replace preview, flags, a cheat sheet and ready-made patterns for email, URL, phone, date and IP.</span></a></div>
+</article>
+<!-- AD SLOT: footer 728x90 -->
+<div class="ad ad-foot" id="ad-foot" data-ad-slot="foot" aria-label="Advertisement"></div>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="consent" id="consent" role="dialog" aria-label="Cookie notice"><span>Textforge uses ads to stay free. Your text never leaves your device. <a href="../privacy.html">Privacy</a></span><button class="btn" id="c-no">Essential only</button><button class="btn primary" id="c-yes">OK</button></div>
+<footer><div class="footlinks"><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a></div><br>Textforge · runs entirely in your browser · <kbd>Alt</kbd>+<kbd>1</kbd>–<kbd>8</kbd> switches tools</footer>
+
+<script src="../app.js" defer></script>
+</body>
+</html>
