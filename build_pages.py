@@ -12,6 +12,7 @@ TEAM = [
     ("pixelsmith", "Pixelsmith", "https://cinch2108.github.io/pixelsmith/", "Compress, resize & convert images"),
     ("mintkit",    "Mintkit",    "https://cinch2108.github.io/mintkit/",    "QR codes, barcodes & passwords"),
     ("tagloom",    "Tagloom",    "https://cinch2108.github.io/tagloom/",    "SEO tools: meta tags, sitemaps & schema"),
+    ("postsmith",  "Postsmith",  "https://cinch2108.github.io/postsmith/",  "Social media tools: fancy text, counters & hashtags"),
     ("localforge", "LocalForge PDF", "https://cinch2108.github.io/",        "Merge, split, compress & sign PDFs"),
 ]
 def team_html():
